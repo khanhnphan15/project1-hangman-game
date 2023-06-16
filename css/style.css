@@ -1,0 +1,23 @@
+body {
+  /* background-image: linear-gradient(to right, #f46b45, #eea849); */
+  background-image: linear-gradient(to right, solid grey, black);
+  color: white;
+  text-align: center;
+}
+
+.alpha {
+  width: 3rem;
+  height: 3rem;
+  background: pink;
+  border: none;
+  border-radius: 5px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.word-div {
+  display: inline-flex;
+}
+.word {
+  margin-right: 1.5rem;
+}
