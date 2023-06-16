@@ -1,36 +1,59 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="text/stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/app.js"></script>
-    <title>Hangman Game in Javascript</title>
+    <title>Hangman Game</title>
 </head>
 
 <body>
-    <div class="wrapper"> //container
-        <h1>Hangman in Javascript</h1>
-        <h3>Try to guess the word by typing a letter each time of your choice</h3>
-        <div class="letter-div"></div> //letters
-        <p>Hints</p>
-        <div class="word-div"></div> //words
+    <div class="wrapper">
+        <h1>Hangman Game in Javascript</h1>
+        <h3>Choose the letters below to guess the word.</h3>
+        <div class="letter-div"><button class="alpha">A</button><button class="alpha">B</button><button
+                class="alpha">C</button><button class="alpha">D</button><button class="alpha">E</button><button
+                class="alpha">F</button><button class="alpha">G</button><button class="alpha">H</button><button
+                class="alpha">I</button><button class="alpha">J</button><button class="alpha">K</button><button
+                class="alpha">L</button><button class="alpha">M</button><button class="alpha">N</button><button
+                class="alpha">O</button><button class="alpha">P</button><button class="alpha">Q</button><button
+                class="alpha">R</button><button class="alpha">S</button><button class="alpha">T</button><button
+                class="alpha">U</button><button class="alpha">V</button><button class="alpha">W</button><button
+                class="alpha">X</button><button class="alpha">Y</button><button class="alpha">Z</button></div>
+        <p></p>
+        <div class="hint-div hidden">
+            <p>Hint:-</p>
+            <p class="hint-txt">Hint for test</p>
+        </div>
+        <div class="word-div"></div>
         <h3>Remaining Lives: <span class="lives">6</span></h3>
         <div class="row hint-div">
-            <button class="hint-btn">Hints</button> //hintBtn
-            <button class="reset-btn">Resets</button> //resetBtn
+            <button class="hint-btn">Helper</button>
+            <button class="reset-btn">Reset</button>
         </div>
-       <div>
-        <h2>Game Over!</h2>
-        <h3 class="notif-content">You won!</h3>
-        <h4>Correct word: <span class="notif-span"></span></h4>
-        <button class="notif-btn">Play Again!</button>
-       </div>
     </div>
-
+    <div class="notif hidden">
+        <h2>Game Over</h2>
+        <h3 class="notif-content">You won</h3>
+        <h4>Correct Word: <span class="notif-span"></span></h4>
+        <button class="notif-btn">Play again</button>
+    </div>
+    <div class="hangman-container">
+        <div class="platform"></div>
+        <div class="vertical-post"></div>
+        <div class="lateral-post"></div>
+        <div class="rope"></div>
+        <div class="head"></div>
+        <div class="left-arm"></div>
+        <div class="right-arm"></div>
+        <div class="body"></div>
+        <div class="left-leg"></div>
+        <div class="right-leg"></div>
+    </div>
 </body>
 
 </html>
-
