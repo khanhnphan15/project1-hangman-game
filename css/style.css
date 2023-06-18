@@ -1,44 +1,54 @@
 body {
   /* background-image: linear-gradient(to right, #f46b45, #eea849); */
-  background-image: linear-gradient(to right, #606c88, pink );
-  color: white;
+  background-image: linear-gradient(to right, #606c88, pink);
+  color: black;
   text-align: center;
-  font-style:inherit;
+  font-style: inherit;
   font-size: larger;
 }
+h2 {
+font-size: 2.5rem;
+}
+
 .wrapper {
   width: fit-content;
   margin: auto;
 }
+
 .hint-div {
   display: flex;
   color: black;
 }
+
 .hint-btn,
 .reset-btn,
 .notif-btn {
   cursor: pointer;
-  font-size: 25px;
+  font-size: 20px;
   font-style: inherit;
-  background-color: skyblue;
+  background-color: rgb(234, 226, 182);
   border-radius: 5rem;
 }
+
 .reset-btn {
   margin-left: auto;
 }
+
 .alpha {
-  width: 3rem;
-  height: 3rem;
-  background: #07e5ff;
+  width: 2rem;
+  height: 2rem;
+  background: rgb(178, 234, 237);
   border: none;
   border-radius: 5px;
   margin: 3px;
   cursor: pointer;
 }
+
 .alpha:hover {
   background-color: solid pink;
   border: none;
 }
+
 .disabled {
   /* pointer-events: none;
   background-color: darkgray; */
@@ -49,6 +59,7 @@ body {
 .word-div {
   display: inline-flex;
 }
+
 .word {
   margin-right: 6rem;
   font-style: inherit;
@@ -56,7 +67,7 @@ body {
 
 .notif {
   position: absolute;
-  top: 50%;
+  top: 72.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: palevioletred;
@@ -65,106 +76,156 @@ body {
   border-radius: 4px;
   box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
 }
+
 .blur {
   filter: blur(2px);
 }
+
 .hidden {
   display: none;
 }
 
 .hangman-container {
   position: relative;
-   height: 300px;
-   width: 300px;
-   border: 1px solid black;
-   margin: auto;
+  height: 300px;
+  width: 300px;
+  margin: auto;
 }
+
+.hangman-container .hanged {}
 
 .hangman-container > div {
-  position: absolute;
-  top: calc(initial - 15px);
+  transition: all 500ms;
+}
+.hangman-container.hanged > div {
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.775);
 }
 
-.platform {
+.hangman-container .platform {
   width: 80%;
   height: 5px;
   background-color: #000;
-  top: 90%;
-  left: 10%;
+  transform: translate(28px, 295px);
 }
 
-.vertical-post {
-  height: 80%;
-  width: 5px;
-  background-color: #000;
-  top: 10%;
-  left: 21%;
-}
-
-.lateral-post {
-  width: 40%;
+.hangman-container .trapdoor {
+  width: 30%;
   height: 5px;
   background-color: #000;
-  top: 10%;
-  left: 21%;
+  transform: translate(142px, 184px);
+  transform-origin: right;
+}
+.hangman-container.hanged .trapdoor {
+  transform: translate(142px, 184px) rotate(-90deg);
 }
 
-.rope {
-  height: 15%;
+.hangman-container .trapdoor-left-vertical {
+  height: 107px;
   width: 5px;
   background-color: #000;
-  top: 10%;
-  left: 60%;
+  transform: translate(122px, 179px);
 }
 
-.head {
+.hangman-container .trapdoor-right-vertical {
+  height: 107px;
+  width: 5px;
+  background-color: #000;
+  transform: translate(246px, 72px);
+}
+
+.hangman-container .trapdoor-lateral-left {
+  width: 19px;
+  height: 5px;
+  background-color: black;
+  transform: translate(123px, -35px);
+}
+
+.hangman-container .trapdoor-lateral-right {
+  width: 19px;
+  height: 5px;
+  background-color: black;
+  transform: translate(232px, -40px);
+}
+
+.hangman-container .vertical-post {
+  height: 280px;
+  width: 5px;
+  background-color: #000;
+  transform: translate(70px, -217px);
+}
+
+.hangman-container .lateral-post {
+  width: 120px;
+  height: 5px;
+  background-color: #000;
+  transform: translate(71px, -497px);
+}
+
+.hangman-container .rope {
+  height: 8%;
+  width: 5px;
+  background-color: #000;
+  transform: translate(186px, -498px);
+}
+.hangman-container.hanged .rope {
+  height: 15%;
+}
+
+.hangman-container .head {
   width: 29px;
   height: 29px;
   border: 3px solid #000;
   border-radius: 50px;
-  top: 25%;
-  left: 55%;
+  transform: translate(171px, -498px);
 }
 
-.body {
+.hangman-container .body {
   height: 23%;
   width: 5px;
   background-color: #000;
-  top: 36%;
-  left: 60%;
+  transform: translate(186px, -589px);
 }
 
-.left-arm {
+.hangman-container .left-arm {
   height: 15%;
   width: 5px;
   background-color: #000;
-  top: 37%;
-  left: 55%;
-  transform: rotate(46deg);
+  transform: translate(170px, -496px) rotate(46deg);
+}
+.hangman-container.hanged .left-arm {
+  transform: translate(179px, -490px) rotate(15deg);
 }
 
-.right-arm {
+.hangman-container .hidden-part {
+  visibility: hidden;
+}
+
+.hangman-container .right-arm {
   height: 15%;
   width: 5px;
   background-color: #000;
-  top: 37%;
-  left: 65%;
-  transform: rotate(135deg);
+  transform: translate(201px, -541px) rotate(135deg);
+}
+.hangman-container.hanged .right-arm {
+  transform: translate(194px, -535px) rotate(164deg);
 }
 
-.left-leg {
-  height: 15%;
-  width: 5px;
-  background-color: #000;
-  top: 58%;
-  left: 57%;
-  transform: rotate(21deg);
-}
-.right-leg {
+.hangman-container .left-leg {
   height: 17%;
   width: 5px;
   background-color: #000;
-  top: 57%;
-  left: 64%;
-  transform: rotate(150deg)
+  transform: translate(177px, -594px) rotate(21deg);
+}
+.hangman-container.hanged .left-leg {
+  transform: translate(182px, -591px) rotate(8deg);
+}
+
+.hangman-container .right-leg {
+  height: 17%;
+  width: 5px;
+  background-color: #000;
+  transform: translate(196px, -644px) rotate(155deg);
+}
+.hangman-container.hanged .right-leg {
+  transform: translate(192px, -642px) rotate(169deg);
 }

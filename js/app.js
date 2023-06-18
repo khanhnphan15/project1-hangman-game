@@ -11,6 +11,15 @@ const notif = document.querySelector('.notif');
 const notifContent = document.querySelector('.notif-content');
 const notifSpan = document.querySelector('.notif-span');
 const playAgain = document.querySelector('.notif-btn');
+const hangmanContainer = document.querySelector('.hangman-container');
+const rope = document.querySelector('.rope');
+const head = document.querySelector('.head');
+const body = document.querySelector('.body');
+const leftArm = document.querySelector('.left-arm');
+const rightArm = document.querySelector('.right-arm');
+const leftLeg = document.querySelector('.left-leg');
+const rightLeg = document.querySelector('.right-leg');
+
 
 // keeping letters using javascript
 // so untill we put html content into letter-div,
@@ -20,10 +29,9 @@ let letters;
 let lives;
 
 const words = new Map([
-  ['baby', 'child'],
-  ['array', 'in Javascript'],
-  ['code', 'programming language'],
-  ['push', 'one of Github action']
+  ['test', 'a test word'],
+  ['tests', 'another test word'],
+  ['random', 'some random word'],
 ]);
 
 // making a list of only keys from words
@@ -40,7 +48,7 @@ let select_word;
 const init = (state) => {
   wordDiv.innerHTML = '';
   select_word = getRandomWord(word_list);
-  lives = 6;
+  lives = 7;
 
   // capturing letters div
   letters = document.querySelectorAll('.alpha');
@@ -49,6 +57,15 @@ const init = (state) => {
   }
   hintDiv.classList.add('hidden');
   notif.classList.add('hidden');
+
+  hangmanContainer.classList.remove('hanged');
+  rope.classList.add('hidden-part');
+  head.classList.add('hidden-part');
+  body.classList.add('hidden-part');
+  leftArm.classList.add('hidden-part');
+  rightArm.classList.add('hidden-part');
+  leftLeg.classList.add('hidden-part');
+  rightLeg.classList.add('hidden-part');
 
   liveSpan.textContent = lives;
 
@@ -73,10 +90,46 @@ const showNotif = (msg) => {
 
 // decrease life
 const decreaseLife = () => {
+  switch (lives) {
+    case 7:
+      head.classList.remove('hidden-part');
+      break;
+
+    case 6:
+      body.classList.remove('hidden-part');
+      break;
+
+    case 5:
+      leftArm.classList.remove('hidden-part');
+      break;
+
+    case 4:
+      rightArm.classList.remove('hidden-part');
+      break;
+
+    case 3:
+      leftLeg.classList.remove('hidden-part');
+      break;
+
+    case 2:
+      rightLeg.classList.remove('hidden-part');
+      break;
+
+    case 1:
+      rope.classList.remove('hidden-part');
+      break;
+
+    default:
+      throw new Error(`${lives} is not a valid option in decreaseLife()`);
+  }
+
   lives--;
+
   //   console.log(lives);
   liveSpan.textContent = lives;
+
   if (lives === 0) {
+    hangmanContainer.classList.add('hanged');
     showNotif('lost');
   }
 };
@@ -107,7 +160,7 @@ const checkWord = () => {
 };
 
 // letters event listener function
-const letterPress = () => {
+const letterPress = function() {
   const letter = this.textContent.toLowerCase();
 
   if (select_word.includes(letter)) {
