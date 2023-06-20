@@ -21,7 +21,13 @@ The word to guess is represented by a row of dashes, giving the number of letter
 
 Technologies used: HTML, CSS and Javascript
 
-Getting started: 
+How to use:
+
+Clone from Github
+Make any changes that you like
+Open index.html to try it out
+
+Demo: 
 link: file:///Users/khanhking/labs/Project-1-Hangman-game/index.html
 
 ![image](https://github.com/khanhnphan15/project1-hangman-game/assets/65747746/c0e7e739-3709-47a7-8227-1de6c7370f03)
