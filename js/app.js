@@ -28,11 +28,12 @@ let letters;
 let lives;
 
 const words = new Map([
-  ['HTML', 'is the standard markup language for Web pages'],
-  ['code', 'programming'],
-  ['DOM', 'Document Object Model'],
-  ['node', 'point at which lines or pathways intersect or branch; a central or connecting point'],
+  ['hangman', 'guess a secret word game'],
+  ['tests', 'another test word'],
+  ['ternary', 'Javascript Operator'],
+  ['function', 'a resuable block of code written to perform a single purpuse'],
 ]);
+
 
 // making a list of only keys from words
 const word_list = [...words.keys()];
@@ -160,7 +161,7 @@ const checkWord = () => {
 };
 
 // letters event listener function
-const letterPress = function() {
+const letterPress = function () {
   const letter = this.textContent.toLowerCase();
 
   if (select_word.includes(letter)) {
