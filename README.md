@@ -27,3 +27,7 @@ link: file:///Users/khanhking/labs/Project-1-Hangman-game/index.html
 ![image](https://github.com/khanhnphan15/project1-hangman-game/assets/65747746/c0e7e739-3709-47a7-8227-1de6c7370f03)
 
 
+![image](https://github.com/khanhnphan15/project1-hangman-game/assets/65747746/c2672b20-29c0-46af-8a37-71b610b5316e)
+
+
+
