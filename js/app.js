@@ -1,4 +1,3 @@
-'use strict';
 
 const letterDiv = document.querySelector('.letter-div');
 const hintButton = document.querySelector('.hint-btn');
@@ -29,9 +28,10 @@ let letters;
 let lives;
 
 const words = new Map([
-  ['test', 'a test word'],
-  ['tests', 'another test word'],
-  ['random', 'some random word'],
+  ['HTML', 'is the standard markup language for Web pages'],
+  ['code', 'programming'],
+  ['DOM', 'Document Object Model'],
+  ['node', 'point at which lines or pathways intersect or branch; a central or connecting point'],
 ]);
 
 // making a list of only keys from words
