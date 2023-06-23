@@ -28,7 +28,7 @@ Make any changes that you like
 Open index.html to try it out
 
 Demo: 
-link:[ file:///Users/khanhking/labs/Project-1-Hangman-game/index.html](https://khanhnphan15.github.io/project1-hangman-game/)
+link: https://khanhnphan15.github.io/project1-hangman-game/
 
 ![image](https://github.com/khanhnphan15/project1-hangman-game/assets/65747746/c0e7e739-3709-47a7-8227-1de6c7370f03)
 
