@@ -4,7 +4,7 @@ Generate a random word and place in a variable
 Guess the word using single words as input
 Display the length of the word
 
-Get some number of lives - 5
+Get some number of lives - 7
 The length of correct guesses < the length of the word
 If the guess is correct and equal to the length of the word =>Player won and play again.
 If the guess is incorrect => increment incorrect guess by 1
@@ -24,7 +24,9 @@ Technologies used: HTML, CSS and Javascript
 How to use:
 
 Clone from Github
+
 Make any changes that you like
+
 Open index.html to try it out
 
 Demo: 
