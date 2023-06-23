@@ -1,13 +1,14 @@
 body {
   /* background-image: linear-gradient(to right, #f46b45, #eea849); */
-  background-image: linear-gradient(to right, #606c88, pink);
+  background-image: linear-gradient(to right, #606c88, #ffc0cb);
   color: black;
   text-align: center;
   font-style: inherit;
   font-size: larger;
 }
+
 h2 {
-font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 
 .wrapper {
@@ -15,9 +16,9 @@ font-size: 2.5rem;
   margin: auto;
 }
 
-.hint-div {
+.flex-container {
   display: flex;
-  color: black;
+  color: #000;
 }
 
 .hint-btn,
@@ -26,7 +27,7 @@ font-size: 2.5rem;
   cursor: pointer;
   font-size: 20px;
   font-style: inherit;
-  background-color: rgb(234, 226, 182);
+  background-color: #eae2b6;
   border-radius: 5rem;
 }
 
@@ -37,7 +38,7 @@ font-size: 2.5rem;
 .alpha {
   width: 2rem;
   height: 2rem;
-  background: rgb(178, 234, 237);
+  background: #b2eaed;
   border: none;
   border-radius: 5px;
   margin: 3px;
@@ -45,7 +46,7 @@ font-size: 2.5rem;
 }
 
 .alpha:hover {
-  background-color: solid pink;
+  background-color: solid #ffc0cb;
   border: none;
 }
 
@@ -60,7 +61,7 @@ font-size: 2.5rem;
   display: inline-flex;
 }
 
-.word {
+.letter {
   margin-right: 6rem;
   font-style: inherit;
 }
@@ -70,15 +71,11 @@ font-size: 2.5rem;
   top: 72.5%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgb(240, 141, 174);
+  background: #f08dae;
   width: 20rem;
   padding: 20px 10px;
   border-radius: 4px;
   box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.blur {
-  filter: blur(2px);
 }
 
 .hidden {
@@ -91,8 +88,6 @@ font-size: 2.5rem;
   width: 300px;
   margin: auto;
 }
-
-.hangman-container .hanged{}
 
 .hangman-container > div {
   transition: all 500ms;

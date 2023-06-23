@@ -1,6 +1,7 @@
 
 const letterDiv = document.querySelector('.letter-div');
-const hintButton = document.querySelector('.hint-btn');
+const letters = document.querySelectorAll('.alpha');
+const helperButton = document.querySelector('.helper-btn');
 const resetButton = document.querySelector('.reset-btn');
 const hintDiv = document.querySelector('.hint-div');
 const hintText = document.querySelector('.hint-txt');
@@ -19,40 +20,38 @@ const rightArm = document.querySelector('.right-arm');
 const leftLeg = document.querySelector('.left-leg');
 const rightLeg = document.querySelector('.right-leg');
 
-
-// keeping letters using javascript
-// so untill we put html content into letter-div,
-// we cant capture letters
-let letters;
-
 let lives;
+let hiddenWord;
 
-const words = new Map([
-  ['hangman', 'guess a secret word game'],
-  ['tests', 'another test word'],
-  ['ternary', 'Javascript Operator'],
-  ['function', 'a resuable block of code written to perform a single purpuse'],
-]);
+const words = [
+  {
+    word: 'hangman',
+    hint: 'guess a secret word game',
+  },
+  {
+    word: 'tests',
+    hint: 'another test word',
+  },
+  {
+    word: 'ternary',
+    hint: 'Javascript Operator',
+  },
+  {
+    word: 'function',
+    hint: 'a reuseable block of code written to perform a single purpose',
+  },
+];
 
+const wordList = words.map((i) => i.word);
 
-// making a list of only keys from words
-const word_list = [...words.keys()];
-
-// get random word from word_list function
-const getRandomWord = (list) => {
-  return list[Math.floor(Math.random() * word_list.length)];
+const getRandomWord = () => {
+  return wordList[Math.floor(Math.random() * wordList.length)];
 };
 
-// random word will be selected upon every reset and init
-let select_word;
-
-const init = (state) => {
-  wordDiv.innerHTML = '';
-  select_word = getRandomWord(word_list);
+const init = () => {
+  hiddenWord = getRandomWord();
   lives = 7;
 
-  // capturing letters div
-  letters = document.querySelectorAll('.alpha');
   for (let l of letters) {
     l.classList.remove('disabled');
   }
@@ -70,27 +69,38 @@ const init = (state) => {
 
   liveSpan.textContent = lives;
 
-  // putting selected word
-  for (let i = 0; i < select_word.length; i++) {
+  // setup hidden word container
+  let hiddenWordLetters = document.querySelectorAll('.letter');
+  hiddenWordLetters.forEach((i) => i.remove());
+
+  for (let i = 0; i < hiddenWord.length; i++) {
     let p = document.createElement('p');
-    p.classList.add('word');
+    p.classList.add('letter');
     p.innerHTML = '_';
     wordDiv.appendChild(p);
   }
 };
-// initializing the page
-init();
 
-// show notification
 const showNotif = (msg) => {
-  notif.classList.remove('hidden');
-  notifSpan.textContent = select_word;
+  notifSpan.textContent = hiddenWord;
   notifContent.textContent = `You ${msg}`;
-  // lives = 3;
+  notif.classList.remove('hidden');
 };
 
-// decrease life
 const decreaseLife = () => {
+  handleHangmanBody();
+
+  lives--;
+
+  liveSpan.textContent = lives;
+
+  if (lives === 0) {
+    hangmanContainer.classList.add('hanged');
+    showNotif('lost');
+  }
+};
+
+const handleHangmanBody = () => {
   switch (lives) {
     case 7:
       head.classList.remove('hidden-part');
@@ -122,35 +132,10 @@ const decreaseLife = () => {
 
     default:
       throw new Error(`${lives} is not a valid option in decreaseLife()`);
-  }
+  };
+}
 
-  lives--;
-
-  //   console.log(lives);
-  liveSpan.textContent = lives;
-
-  if (lives === 0) {
-    hangmanContainer.classList.add('hanged');
-    showNotif('lost');
-  }
-};
-
-// get multiple matching indexes of pressed letter
-// to the selected word
-const getindexes = (letter) => {
-  let indexes = [];
-  [...select_word].forEach((val, i) => {
-    if (val === letter) {
-      const index = i;
-      indexes.push(index);
-    }
-  });
-  //   console.log(indexes);
-  return indexes;
-};
-
-// check if we get complete word
-const checkWord = () => {
+const checkIfPlayerWon = () => {
   let val = true;
   for (let i = 0; i < wordDiv.children.length; i++) {
     if (wordDiv.children[i].textContent === '_') {
@@ -160,20 +145,23 @@ const checkWord = () => {
   return val;
 };
 
-// letters event listener function
 const letterPress = function () {
-  const letter = this.textContent.toLowerCase();
+  let clickedLetterButton = this;
+  const typedLetter = clickedLetterButton.textContent.toLowerCase();
 
-  if (select_word.includes(letter)) {
-    const indexes_list = getindexes(letter);
-    indexes_list.forEach((val, i) => {
-      wordDiv.children[val].textContent = this.textContent;
+  if (hiddenWord.includes(typedLetter)) {
+    [...hiddenWord].forEach((hiddenWordLetter, idx) => {
+      if (hiddenWordLetter === typedLetter) {
+        wordDiv.children[idx].textContent = clickedLetterButton.textContent;
+      }
     });
-    if (checkWord()) showNotif('won');
+    if (checkIfPlayerWon()) {
+      showNotif('won');
+    };
   } else {
     decreaseLife();
   }
-  this.classList.add('disabled');
+  clickedLetterButton.classList.add('disabled');
 };
 
 // listening to letter buttons presses
@@ -182,9 +170,9 @@ letters.forEach(btn => {
 });
 
 // Listening to hint btn
-hintButton.addEventListener('click', () => {
+helperButton.addEventListener('click', () => {
   hintDiv.classList.remove('hidden');
-  hintText.textContent = words.get(select_word);
+  hintText.textContent = words.find((i) => i.word === hiddenWord).hint;
 });
 
 // listening to reset btn
@@ -196,3 +184,5 @@ resetButton.addEventListener('click', () => {
 playAgain.addEventListener('click', () => {
   init();
 });
+
+init();
